@@ -1,0 +1,14 @@
+{% if posts %}
+    {% for post in posts %}
+	<div id="post-{{ post.id }}" class="post content-left">
+		<h1><a href="?module=post&id={{ post.id }}">{{ post.title || safe }}</a></h1>
+		<p><a href="?module=user&id={{ post.uid }}">{{ post.username || safe }}</a> - {{ post.time || safe }}</p>
+		<hr>
+		<p>{{ post.body || safe }}</p>
+	</div>
+    {% endfor %}
+{% else %}
+	<div class="post content-left">
+		<h1>There was an error</h1>
+	</div>
+{% endif %}

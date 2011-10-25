@@ -1,0 +1,29 @@
+{% if comments %}
+<script src="media/js/comments.js"></script>
+        {% for comment in comments %}
+                <div id="comment-{{ comment.id }}" class="comment" style="width: {{ comment.width }}%;">
+                        <p>
+                                <a href="?module=post&id={{ thread }}#comment-{{ comment.id }}">Comment #{{ comment.id }}</a> by
+                                <a href="?module=user&id={{ comment.uid }}">{{ comment.username || safe }}</a> at {{ comment.time || safe }} -
+                <a href="#comment-{{ comment.id }}" onClick="commentForm({{ thread }},{{ comment.id }})">reply</a>
+                        </p>
+                        <p>{{ comment.body || safe }}</p>
+                </div>
+        {% endfor %}
+{% endif %}
+<div id="comment-form">
+{% if auth == 0 %}
+    <p>{{ error }}</p>
+{% else %}
+    {% if error %}
+        <p>error: {{ error }}</p>
+    {% endif %}
+        <h1>comment</h1>
+        <form action="?module=post&action=comment" method="post">
+                <textarea name="body" cols="50" rows="10"></textarea><br />
+                <input type="hidden" name="thread" value="{{ thread }}">
+                <input type="hidden" name="parent" value="0">
+                <input type="submit" name="submit" value="submit">
+        </form>
+{% endif %}
+</div>

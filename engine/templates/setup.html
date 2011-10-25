@@ -1,0 +1,28 @@
+<div id="post-form" class="content-left">
+    <h1>set up</h1>
+    {% if error %}
+        <p>error: {{ status }}</p>
+    {% else %}
+		{% if status %}
+			<p>error: {{ status }}</p>
+		{% endif %}
+		<form name="register" action="?module=setup&action=start" method="post">
+			<label for="dbhost" class="login-label">database hostname:</label>
+			<input name="dbhost" id="username" value="{{ dbhost }}" type="text"><br>
+			<label for="dbuser" class="login-label">database username:</label>
+			<input name="dbuser" id="password" type="text"><br>
+			<label for="dbpass" class="login-label">database password:</label>
+			<input name="dbpass" id="email" type="text"><br>
+			<label for="dbname" class="login-label">database name:</label>
+			<input name="dbname" id="email" type="text"><br>
+			<label for="timezone" class="login-label">timezone:</label>
+			<select name="timezone">
+			{% for timezone in timezones %}
+				<option value="{{ timezone }}">{{ timezone }}</option>
+			{% endfor %}
+			</select>
+			<br>
+			<input value="submit" type="submit"><br>
+		</form>
+	{% endif %}
+</div>

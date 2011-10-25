@@ -1,0 +1,16 @@
+{% if content %}
+        <div id="post-{{ content.id }}" class="post content-left">
+                {% if error %}
+                        <h1>{{ error }}</h1>
+                {% else %}
+                        <h1><a href="?module=post&id={{ content.id }}">{{ content.title || safe }}</a></h1>
+                        <p><a href="?module=user&id={{ content.uid }}">{{ content.username || safe }}</a> - {{ content.time || safe }}</p>
+                        <hr>
+                        <p>{{ content.body || safe }}</p>
+                {% endif %}
+        </div>
+{% else %}
+        <div class="post content-left">
+                <h1>{{ error }}</h1>
+        </div>
+{% endif %}

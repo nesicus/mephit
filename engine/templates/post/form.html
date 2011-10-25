@@ -1,0 +1,23 @@
+<div id="post-form" class="content-left">
+    <h1>create content</h1>
+	{% if auth == 0 %}
+		<p>{{ error }}</p>
+	{% else %}
+		{% if error %}
+			<p>error: {{ error }}</p>
+		{% endif %}
+		<form action="?module=post&action=new" method="post">
+				<label for="title">heading:</label><br />
+				<input type="text" name="title"><br/>
+				<label for="body">body:</label><br />
+				<textarea name="body" cols="50" rows="10"></textarea><br />
+				<label for="type">content type:</label>
+				<select name="type">
+					{% for key, value in types %}
+					<option value="{{ key }}">{{ value.name }}</option>;
+					{% endfor %}
+				</select>
+				<input type="submit" name="submit" value="submit">
+		</form>
+	{% endif %}
+</div>

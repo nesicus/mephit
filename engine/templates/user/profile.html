@@ -1,0 +1,17 @@
+{% if user %}
+
+<div id="user-{{ user.id }}" class="content-left profile">
+	<img src="files/images/users/{{ user.id }}.png" class="user-image" />
+	<h1>{{ user.name }}</h1>
+	<p>registered: {{ user.created }}</p>
+	<table id="profile">
+		{% for key, value in user.profile %}
+		<tr>
+			<td>{{ key }}:</td>
+			<td>{{ value }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+{% endif %}

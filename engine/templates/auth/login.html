@@ -1,0 +1,17 @@
+<div class="content-left">
+    <h1>login</h1>
+    {% if auth.error %}
+        <p>error: {{ auth.error }}</p>
+    {% endif %}
+    {% if user.id == 0 %}
+    <form name="login" action="?module=auth&action=login" method="post">
+        <label for="username" class="login-label">username:</label>
+        <input name="username" id="username" value="{{ auth.username }}" type="text"><br>
+        <label for="password" class="login-label">password:</label>
+        <input name="password" id="password" type="password"><br>
+        <input value="submit" type="submit">
+    </form>
+    {% else %}
+    <p>User is already logged in.</p>
+    {% endif %}
+</div>
