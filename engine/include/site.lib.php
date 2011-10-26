@@ -1,13 +1,7 @@
 <?php
-	/*
-	 *      project: recovery
-	 *      date: 2011-02-24
-	 *      version: 0.0.1
-	 *      
-	 *      file: site.lib.php
-	 *      date: 2011-02-24
-	 *      version: 0.0.1
-	 *      author: daryl
+	/* site.lib.php
+	 * date: 2011-10-25
+	 * description: general site functions
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();

@@ -1,6 +1,6 @@
 <?php
 	/* sessions.lib.php
-	 * date: 2011-02-22
+	 * date: 2011-10-25
 	 * description: library for handling sessions
 	*/
 
@@ -27,16 +27,17 @@
 			);
 
 			
-			// check for invalid cookie data
-			if (isset($_COOKIE[COOKIE_NAME]) && preg_match('/[^a-zA-Z0-9]/', $_COOKIE[COOKIE_NAME]) || isset($_COOKIE[COOKIE_NAME]) && @$_COOKIE[COOKIE_NAME] == "" || @strlen($_COOKIE[COOKIE_NAME]) != 40) {
-				// generate a new, valid ID
+			if (!empty($_COOKIE[COOKIE_NAME])) {
+				// generate a new session ID if cookie data is invalid
+				if (preg_match('/[^a-zA-Z0-9]/', $_COOKIE[COOKIE_NAME]) || strlen($_COOKIE[COOKIE_NAME]) != 40)
+					$this->genID();
+			} else {
+				// generate a new session ID for fresh session
 				$this->genID();
 			}
 
-			session_set_cookie_params(time() + COOKIE_LIFETIME, COOKIE_PATH, COOKIE_DOMAIN, COOKIE_SECURE,
-				COOKIE_HTTPONLY);
-			
 			// set sessions options
+			session_set_cookie_params(time() + COOKIE_LIFETIME, COOKIE_PATH, COOKIE_DOMAIN, COOKIE_SECURE, COOKIE_HTTPONLY);
 			session_name(COOKIE_NAME);
 		}
 		
@@ -64,17 +65,17 @@
 		
 		public function write($id, $data) {
 			$query = sprintf("REPLACE INTO sessions (id, activity, data, ipaddr) VALUES('%s', %d, '%s', '%s')",
-				mysql_real_escape_string($id),
-				mysql_real_escape_string(time()),
-				mysql_real_escape_string($data),
-				mysql_real_escape_string(getUserIP())
+				$this->sql->sanitize($id),
+				$this->sql->sanitize(time()),
+				$this->sql->sanitize($data),
+				$this->sql->sanitize(getUserIP())
 			);
 			$this->sql->query($query);
 			return TRUE;
 		}
 		
 		public function destroy($id) {
-			$query = sprintf("DELETE FROM sessions WHERE id = '%s'", mysql_real_escape_string($id));
+			$query = sprintf("DELETE FROM sessions WHERE id = '%s'", $this->sql->sanitize($id));
 			$this->sql->query($query);
 			return TRUE;
 		}
@@ -83,7 +84,7 @@
 			// override the default grace setting [bandaid]
 			$grace = 259200; // 3 days
 			
-			$query = sprintf("DELETE FROM sessions WHERE activity < %s", mysql_real_escape_string(time() - $grace));
+			$query = sprintf("DELETE FROM sessions WHERE activity < %d", $this->sql->sanitize(time() - $grace));
 			$this->sql->query($query);
 			return TRUE;
 		}

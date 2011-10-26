@@ -1,13 +1,7 @@
 <?php
-	/*
-		project: recovery
-		date: 2011-02-25
-		version: 0.0.1
-		
-		file: auth.mod.php
-		date: 2011-02-25
-		version: 0.0.1
-		author: brandan
+	/* auth.mod.php
+	 * date: 2011-02-25
+	 * description: handles user authentication (logging in and logging out)
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();

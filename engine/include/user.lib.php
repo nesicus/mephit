@@ -1,18 +1,12 @@
 <?php
-	/*
-		project: recovery
-		date: 2011-02-18
-		version: 0.0.1
-		
-		file: user.lib.php
-		date: 2011-02-18
-		version: 0.0.1
-		author: daryl
-		description: class for handling user and authentication structures
+	/* user.lib.php
+	 * date: 2011-10-25
+	 * description: class for handling user and authentication structures
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();
 	
+	// type identifiers for user preferences
 	define('USERNAME', 1);
 	define('TIMEZONE', 2);
 	

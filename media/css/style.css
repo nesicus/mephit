@@ -41,7 +41,7 @@ table#profile td {
 }
 
 #footer {
-    background-image: url('media/img/footer-bg.png');
+    background-image: url('/media/img/footer-bg.png');
     background-repeat: no-repeat;
         clear: both;
     height: 100px;
@@ -57,7 +57,7 @@ table#profile td {
 
 #header {
         background-color: #45484b;
-    background-image: url('media/img/header-bg.png');
+    background-image: url('/media/img/header-bg.png');
     background-repeat: no-repeat;
         color: #ffffff;
     height: 100px;
@@ -163,7 +163,7 @@ table#profile td {
 }
 
 .side-footer {
-    background-image: url('media/img/side-footer-bg.png');
+    background-image: url('/media/img/side-footer-bg.png');
     background-repeat: no-repeat;
     background-position: right;
     height: 25px;
@@ -172,7 +172,7 @@ table#profile td {
 
 .side-header {
     background-color: #656a6c;
-    background-image: url('media/img/side-header-bg.png');
+    background-image: url('/media/img/side-header-bg.png');
     background-repeat: no-repeat;
     height: 25px;
     line-height: 25px;

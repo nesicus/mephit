@@ -27,7 +27,11 @@
 
 	// store session IDs here
 	define('COOKIE_NAME', 'mephit_sess');
+	
+	// the domain to set cookies for
 	define('COOKIE_DOMAIN', DOMAIN_NAME);
+	
+	// the path to set cookies for
 	define('COOKIE_PATH', '/');
 	define('COOKIE_LIFETIME', '31536000');
 	define('COOKIE_SECURE', FALSE);

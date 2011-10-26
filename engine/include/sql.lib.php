@@ -1,17 +1,11 @@
 <?php
-	/*
-		project: recovery
-		version: 0.0.1
-		date: 2011-02-16
-		
-		file: sql.lib.php
-		version: 0.0.1
-		date: 2011-02-16
-		author: daryl
-		description: simple SQL wrapper and abstraction
+	/* sql.lib.php
+	 * date: 2011-02-16
+	 * description: simple SQL wrapper and abstraction
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();
+	
 	// define the query types
 	define('SQL_NONE', 1);
 	define('SQL_ALL', 2);
