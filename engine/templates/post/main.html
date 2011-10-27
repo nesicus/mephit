@@ -1,14 +1,19 @@
+<div class="content-left">
 {% if posts %}
     {% for post in posts %}
-	<div id="post-{{ post.id }}" class="post content-left">
-		<h1><a href="?module=post&id={{ post.id }}">{{ post.title || safe }}</a></h1>
-		<p><a href="?module=user&id={{ post.uid }}">{{ post.username || safe }}</a> - {{ post.time || safe }}</p>
+	 
+	<div id="post-{{ post.id }}">
+		<h1><div id="title"><a href="?module=post&id={{ post.id }}">{{ post.title || safe }}</a></div></h1> 
+		<p><div id="user"><a href="?module=user&id={{ post.uid }}">{{ post.username || safe }}</a> - {{ post.time || safe }} Replies:</div></p>
 		<hr>
 		<p>{{ post.body || safe }}</p>
+		<p>&nbsp;</p><p>&nbsp;</p>
 	</div>
+	
     {% endfor %}
 {% else %}
 	<div class="post content-left">
 		<h1>There was an error</h1>
 	</div>
 {% endif %}
+</div>

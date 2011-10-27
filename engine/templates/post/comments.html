@@ -2,15 +2,21 @@
 <script src="media/js/comments.js"></script>
         {% for comment in comments %}
                 <div id="comment-{{ comment.id }}" class="comment" style="width: {{ comment.width }}%;">
-                        <p>
-                                <a href="?module=post&id={{ thread }}#comment-{{ comment.id }}">Comment #{{ comment.id }}</a> by
-                                <a href="?module=user&id={{ comment.uid }}">{{ comment.username || safe }}</a> at {{ comment.time || safe }} -
-                <a href="#comment-{{ comment.id }}" onClick="commentForm({{ thread }},{{ comment.id }})">reply</a>
-                        </p>
+<p>
+<a href="?module=user&id={{ comment.uid }}" class="black">{{ comment.username || safe }}</a> wrote a blurb on {{ comment.time || safe }} -
+<a href="#comment-{{ comment.id }}" onClick="commentForm({{ thread }},{{ comment.id }})" class="orange">reply</a> or link to
+<a href="?module=post&id={{ thread }}#comment-{{ comment.id }}" class="orange">#{{ comment.id }}</a>
+</p>
                         <p>{{ comment.body || safe }}</p>
                 </div>
+
         {% endfor %}
 {% endif %}
+
+
+
+
+
 <div id="comment-form">
 {% if auth == 0 %}
     <p>{{ error }}</p>

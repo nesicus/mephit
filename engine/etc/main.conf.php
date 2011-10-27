@@ -7,22 +7,22 @@
 	if (!defined('IN_RECOVERY')) die();
 	
 	// you must uncomment the line below before proceeding
-	//define('INSTALLED', TRUE);
+	define('INSTALLED', TRUE);
 	
 	// the URL to your website
-	define('WEBSITE_URL', 'http://www.example.com/');
+	define('WEBSITE_URL', 'http://217.122.151.71/');
 	
 	// your domain name
-	define('DOMAIN_NAME', 'example.com');
+	define('DOMAIN_NAME', '217.122.151.71');
 	
 	// the e-mail address notices sent from this software should use
 	define('SITE_EMAIL', 'example@example.com');
 	
 	// SQL connection information
 	$sqlInfo = array("hostname" => "localhost",
-						"username" => "username",
-						"password" => "password",
-						"database" => "database"
+						"username" => "mephit",
+						"password" => "123456",
+						"database" => "mephit"
 					);
 
 	// store session IDs here

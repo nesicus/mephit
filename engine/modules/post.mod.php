@@ -116,4 +116,5 @@
 			$status = "You are not allowed to make this kind of contribution.";
 		}
 	}
+
 ?>
