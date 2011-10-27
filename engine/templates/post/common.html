@@ -1,16 +1,17 @@
 {% if content %}
-        <div id="post-{{ content.id }}" class="post content-left">
+<div class="content-left"> 
+       <div id="post-{{ content.id }}">
                 {% if error %}
                         <h1>{{ error }}</h1>
                 {% else %}
-                        <h1><a href="?module=post&id={{ content.id }}">{{ content.title || safe }}</a></h1>
-                        <p><a href="?module=user&id={{ content.uid }}">{{ content.username || safe }}</a> - {{ content.time || safe }}</p>
+                        <h1><div id="title"><a href="?module=post&id={{ content.id }}">{{ content.title || safe }}</a></div></h1>
+                        <p><div id="user"><a href="?module=user&id={{ content.uid }}">{{ content.username || safe }}</a> - {{ content.time || safe }} Replies:</p></div>
                         <hr>
                         <p>{{ content.body || safe }}</p>
                 {% endif %}
-        </div>
+        </div></div>
 {% else %}
-        <div class="post content-left">
+        <div class="content-left">
                 <h1>{{ error }}</h1>
         </div>
 {% endif %}

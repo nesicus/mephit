@@ -1,195 +1,107 @@
-a {
-    border: none;
-        color: #ffffff;
-    font-weight: bold;
-        text-decoration: none;
-}
+/* 
+	Global CSS settings for Mephit, v0.0.1.
+	There is not much to understand, there are four sections: header, navigation, content, footer.
+	Box-model. We start with global settings then proceed on to specific sections.
 
-a:link, a:visited, a:hover {
-        color: #ffffff;
-        text-decoration: none;
-}
+*/
 
-body {
-        background-color: #45484b;
-        font-family: sans-serif;
-        font-size: 12px;
-        margin: 0;
-}
 
-table#profile {
-        margin-bottom: 10px;
-}
+body {background-color: #45484b;font-family: sans-serif;font-size: 12px;margin: 0;}
 
-table#profile td {
-        padding: 2px 10px 2px 0;
-}
 
-#body {
-    background-color: #36393b;
-    padding: 0 0 20px 0;
-    width: 100%;
-}
+/*	
+	End global settings and starting the #header section. 
+	Please be aware that all definitions are in the exact order as the div's 
+	require them to appear in the template structure.
+*/
 
-#comment-form {
 
-}
+#header {background-image: url('/media/img/header-bg.png');background-repeat: no-repeat;color: #ffffff;height: 100px;padding: 0;}
+#logo img {padding: 0;margin: 0;border: none;}
 
-#content {
-        margin: 0 340px 0 0;
-        padding: 20px;
-}
 
-#footer {
-    background-image: url('/media/img/footer-bg.png');
-    background-repeat: no-repeat;
-        clear: both;
-    height: 100px;
-}
+/*	
+	Ending header and starting #navigation. Here is where we define the padding,
+	margin, etc. of our horizontal navigation bar. We define how we want our 
+	to behave and how the bar will look in general. We specify a #login id and its properties.
+*/
 
-#footer-message {
-    background-color: #656a6c;
-    color: #ffffff;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-}
 
-#header {
-        background-color: #45484b;
-    background-image: url('/media/img/header-bg.png');
-    background-repeat: no-repeat;
-        color: #ffffff;
-    height: 100px;
-    padding: 0;
-}
+#navigation {background-color: #656a6c;color: #ffffff;height: 25px;line-height: 25px;padding: 0 90px 0 150px;}
+#navigation a, #footer a {border: none;color: #ffffff;font-weight: bold;text-decoration: none;}
+#navigation a:link, #footer a:link {color: #ffffff;text-decoration: none;}
+#navigation a:hover, #footer a:hover {color: #ffffff;text-decoration: underline;}
+#navigation a:visited, #footer a:visited {color: #ffffff;font-weight: bold;text-decoration: none;}
 
-#login {
-    float: right;
-}
+#login {float: right;}
+#links {float: left;}
 
-#logo img {
-    padding: 0;
-    margin: 0;
-    border: none;
-}
 
-#navigation {
-    background-color: #656a6c;
-    color: #ffffff;
-    height: 25px;
-    line-height: 25px;
-    padding: 0 10px 0 10px;
-}
+/*	
+	The end of the navigation section. We're ploughin' along nicely.
+	We have reached the content part where we have to start boxing everything up.
+	In our next section we set the background color of the main content container.
+	Be aware that the width is 100% of your screen and as such is the colour of the whole middle area.
+	We also define our sidebar properties and classes.
+*/
 
-#post-form textarea {
-    margin-top: 10px;
-    width: 500px;
-}
 
-#post-form input {
-    margin: 10px 0 10px 0;
-}
+#body {background-color: #36393b;width: 100%;}
 
-#side {
-        float: right;
-    padding: 20px;
-        width: 300px;
-}
 
-.post, .profile {
+#side {float: right;width: 200px;background-color: #36393b;margin-right: 90px;margin-top:20px;padding: 0;}
+#side a, a:link, a:visited {color: #36393b;}
+#side a:hover {text-decoration: underline;}
+.side {margin-bottom: 30px;}
+.side-content {background-color: #FFFFFF;padding: 20px;border-radius: 15px;-moz-border-radius: 15px;}
+.side-content ul {margin: 0; padding: 0 0 0 15px;}
+.side-title {font-family:"URW Bookman L";text-align: left;font-size: 1.3em; font-weight: bold;color:#C66E0C;letter-spacing:1px;}
 
-}
 
-.clear {
-    clear: both;
-}
+/*	
+	Now that we have determined how our sidebar behaves and looks,
+	we are going to start working on our main content box.
+	We have named it content-left for easy identification.
+*/
 
-.comment {
-    background-color: #dddddd;
-    float: right;
-    margin: 20px 0 0 0;
-    padding: 10px;
-}
 
-.comment textarea {
-    width: 100%;
-}
+#content {margin: 0 380px 0px 0;padding: 20px 0 20px 150px;}
+#content p {font-family: sans-serif;font-size: 1.2em;letter-spacing:1px;}
+.content-left {background-color:#ffffff;padding: 20px; border-radius: 15px; -moz-border-radius: 15px;}
+.content-left h1, #side h1 {margin: 0;color: #C66E0C;padding: 0;}
+.content-left p {margin: 5px 0 5px 0;}
 
-.content-left h1, #side h1 {
-        margin: 10px 0 0 0;
-}
 
-.content-left p {
-        margin: 5px 0 5px 0;
-}
+#comment-form {}
+#post-form textarea {margin-top: 10px;width: 500px;}
+#post-form input {margin: 10px 0 10px 0;}
+.post, .profile {text-decoration: none;}
 
-.content-left {
-    background-color: #ffffff;
-    padding: 10px;
-}
+#title {font-family:"URW Bookman L";font-size:1.2em;letter-spacing:1px;}
+#title a, a:link, a:visited, #user a, #user a:link, #user a:visited {text-decoration: none;}
+#title a:hover, #user a:hover {text-decoration: underline;}
+#title a, a:hover, a:visited, a:link {color: #C66E0C;}
+#user a, a:hover, a:link, a:visited {color: black;font-weight:bold;}
 
-.content-left a , .comment a {
-    color: #da7100;
-}
 
-.content-left h1 {
-    padding: 0;
-    margin: 0;
-}
+.clear {clear: both;}
+.comment {background-color: #FFFFFF;float: right;margin: 20px 0 0 200;padding: 10px;border-radius: 15px; -moz-border-radius: 15px;font-size:10px;}
 
-.login-label {
-        display: block;
-        float: left;
-        width: 100px;
-}
+a.orange:visited, a.orange:link, a.orange:active {color:#C66E0C;}
+a.orange:hover {text-decoration:underline;}
+a.black:visited, a.black:link, a.black:active {color:black;}
+a.black:hover {text-decoration:underline;}
 
-.side {
-    margin-bottom: 20px;
-}
 
-.side-content {
-    background-color: #ffffff;
-    padding: 10px;
-}
+.comment textarea {width: 100%;}
+.login-label {display: block;float: left;width: 100px;}
+.user-image {border: 1px solid #000000;float: right;margin-top: 10px;}
 
-.side-content a {
-    color: #da7100;
-}
 
-.side-content ul {
-    margin: 0;
-    padding: 0 0 0 15px;
-}
+/*
+	End of the main content section. Footer.
+*/
 
-.side-footer {
-    background-image: url('/media/img/side-footer-bg.png');
-    background-repeat: no-repeat;
-    background-position: right;
-    height: 25px;
-    margin-top: -25px;
-}
+#footer {background-image: url('/media/img/footer-bg.png');background-repeat: no-repeat;clear: both;height: 100px;}
+#footer-message {background-color: #656a6c;color: #ffffff;height: 25px;line-height: 25px;text-align: center;}
 
-.side-header {
-    background-color: #656a6c;
-    background-image: url('/media/img/side-header-bg.png');
-    background-repeat: no-repeat;
-    height: 25px;
-    line-height: 25px;
-    position: relative;
-    text-align: right;
-    width: 300px;
-}
-
-.side-header h1 {
-    color: #ffffff;
-    font-size: 1em;
-    margin: 0;
-    padding: 0 5px 0 0;
-}
-
-.user-image {
-        border: 1px solid #000000;
-        float: right;
-        margin-top: 10px;
-}

@@ -6,54 +6,43 @@
 	<body>
 		<div id="header">
 			<div id="logo">
-                <a href="/"><img src="media/img/logo.png" /></a>
-            </div>
+                       </div>
 		</div>
         <div id="navigation">
             <div id="login">
                 {% if user.id != 0 %}
-                links for {{ user.name }} - <a href="?module=post&action=new">post</a> :: <a href="?module=user&id={{ user.id }}">profile</a> :: <a href="?module=auth&action=logout">logout</a>
+                links for <a href="?module=user&id={{ user.id }}">{{ user.name }}</a> # <a href="?module=post&action=new">post</a> # <a href="?module=auth&action=logout">logout</a>
                 {% else %}
-                Not logged in (<a href="?module=auth">login</a> :: <a href="?module=user&action=new">register</a>)
+                Not logged in (<a href="?module=auth">login</a> # <a href="?module=user&action=new">register</a>)
                 {% endif %}
             </div>
             <div id="links">
-                <a href="#">news</a> :: <a href="#">articles</a> :: <a href="#">columns</a> :: <a href="#">demos</a> :: <a href="#">forums</a> :: <a href="#">galleries</a>
+                <a href="index.php">source</a> # <a href="#">github</a> 
             </div>
         </div>
 		<div id="body">
 			<div id="side">
 				<div class="side">
-                    <div class="side-header"><h1>another side thing</h1></div>
                     <div class="side-content">
-                        <ul>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this is another link</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this link makes the links look more...</a></li>
-                            <li><a href="#">natural so i can see shit</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">the way it might normally appear</a></li>
-                            <li><a href="#">this is a link</a></li>
+			<div class="side-title">Project</div><br />
+			 <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Download</a></li>
+                            <li><a href="#">Collaborate</a></li>
+                            <li><a href="#">Licensing</a></li>
                         </ul>
                     </div>
                     <div class="side-footer"></div>
                 </div>
                 <div class="side">
-                    <div class="side-header"><h1>a side title</h1></div>
+                    
                     <div class="side-content">
+			<div class="side-title">Discussion</div><br />
                         <ul>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this is another link</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this link makes the links look more...</a></li>
-                            <li><a href="#">natural so i can see shit</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">this is a link</a></li>
-                            <li><a href="#">the way it might normally appear</a></li>
-                            <li><a href="#">this is a link</a></li>
-                        </ul>
+                            <li><a href="#">Known Issues</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Plugins</a></li>
                     </div>
                     <div class="side-footer"></div>
                 </div>
@@ -66,7 +55,7 @@
             <div class="clear"></div>
 		</div>
 		<div id="footer">
-            <div id="footer-message">this site is copyright a million</div>
+            <div id="footer-message">Published under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU GPL</a>.</div>
 		</div>
 	</body>
 </html>
