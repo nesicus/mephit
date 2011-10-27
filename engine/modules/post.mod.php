@@ -1,14 +1,7 @@
 <?php
-	/*
-	 *      project: recovery
-	 *      date: 2011-03-02
-	 *      version: 0.0.1
-	 *      
-	 *      file: post.mod.php
-	 *      date: 2011-03-02
-	 *      version: 0.0.1
-	 *      author: daryl
-	 *      description:
+	/* post.mod.php
+	 * date: 2011-03-02
+	 * description: module for handling posts and comments
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();

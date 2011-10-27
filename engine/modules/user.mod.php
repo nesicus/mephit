@@ -1,13 +1,7 @@
 <?php
-	/*
-		project: recovery
-		date: 2011-02-19
-		version: 0.0.1
-		
-		file: user.mod.php
-		date: 2011-02-19
-		version: 0.0.1
-		author: daryl
+	/* user.mod.php
+	 * date: 2011-02-19
+	 * description: module for handling user information
 	*/
 	
 	if (!defined('IN_RECOVERY')) die();
