@@ -1,13 +1,42 @@
 <?php
-	/*	index.php
-	 *	date: 2011-10-21
-	 *	description: this file is the "engine" of the website. it is the entry point to all of the site's features and
-	 *	modules.
-	*/
+/*
+ *      index.php 2011-10-27
+ *      
+ *      Copyright 2011 daryl <daryl@99years.com>
+ *      
+ *      Redistribution and use in source and binary forms, with or without
+ *      modification, are permitted provided that the following conditions are
+ *      met:
+ *      
+ *      * Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ *      * Redistributions in binary form must reproduce the above
+ *        copyright notice, this list of conditions and the following disclaimer
+ *        in the documentation and/or other materials provided with the
+ *        distribution.
+ *      * Neither the name of the  nor the names of its
+ *        contributors may be used to endorse or promote products derived from
+ *        this software without specific prior written permission.
+ *      
+ *      THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *      "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *      LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *      A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *      OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *      SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *      LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *      DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *      THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *      (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *      
+ *      
+ */
 
-	// here we define a global constant which all modules and referenced files will check to ensure they are being
-	// called properly. this prevents any tampering with the site backend by malicious users who may try to call PHP
-	// files individually, outside of the context of the "engine."
+
+	/* here we define a global constant which all modules and referenced files will check to ensure they are being
+	 called properly. this prevents any tampering with the site backend by malicious users who may try to call PHP
+	 files individually, outside of the context of the "engine." */
 	define('IN_RECOVERY', TRUE);
 
 	// absolute path for bootstrapping
@@ -30,6 +59,7 @@
 	// set default time zone
 	ini_set('date.timezone', DEFAULT_TZ);
 	
+	// for security purposes we'd prefer not to divulge configuration details and runtime errors
 	if (DEBUG == TRUE) {
 		ini_set('display_errors', TRUE);
 		error_reporting(E_ALL);
@@ -96,6 +126,11 @@
 	
 	// begin the installation procedure if necessary
 	if (!defined('INSTALLED')) {
+		$_SESSION = array('user' => 
+							array('id' => 1,
+									'name' => 'admin',
+									'level' => 1)
+						);
 		include MODULES_DIR . 'install.mod.php';
 		exit;
 	}
@@ -123,11 +158,11 @@
 		$USER_LEVELS_ARRAY[0]['privileges'] = defined('ANON_PRIVS') ? @ANON_PRIVS : 0;
 	}
 	
-	// this is basically where stuff starts happening. any content to be rendered by the site will be loaded from 
-	// modules, which are all accessed through the engine. we want to make sure to prevent any kind of directory
-	// traversal attacks, buffer overflows, or what have you by limiting the characters allowed for module names. if the
-	// site is accessed without referencing a module, or a module name is determined to be illegal or nonexistent, the
-	// default module page will be loaded, as determined by $module
+	/* this is basically where stuff starts happening. any content to be rendered by the site will be loaded from 
+	 modules, which are all accessed through the engine. we want to make sure to prevent any kind of directory
+	 traversal attacks, buffer overflows, or what have you by limiting the characters allowed for module names. if the
+	 site is accessed without referencing a module, or a module name is determined to be illegal or nonexistent, the
+	 default module page will be loaded, as determined by $module */
 	$module = 'main';
 	
 	if (isset($_GET['module']) && strlen(@$_GET['module']) <= 15) {

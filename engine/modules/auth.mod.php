@@ -1,8 +1,37 @@
 <?php
-	/* auth.mod.php
-	 * date: 2011-02-25
-	 * description: handles user authentication (logging in and logging out)
-	*/
+/*
+ *      auth.mod.php 2011-10-27
+ *      
+ *      Copyright 2011 Daryl Fain <daryl@99years.com>
+ *      
+ *      Redistribution and use in source and binary forms, with or without
+ *      modification, are permitted provided that the following conditions are
+ *      met:
+ *      
+ *      * Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ *      * Redistributions in binary form must reproduce the above
+ *        copyright notice, this list of conditions and the following disclaimer
+ *        in the documentation and/or other materials provided with the
+ *        distribution.
+ *      * Neither the name of the  nor the names of its
+ *        contributors may be used to endorse or promote products derived from
+ *        this software without specific prior written permission.
+ *      
+ *      THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *      "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *      LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *      A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *      OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *      SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *      LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *      DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *      THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *      (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *      
+ *      
+ */
 	
 	if (!defined('IN_RECOVERY')) die();
 
@@ -71,14 +100,25 @@
 			'username' => $username, // set this with posted username
 		);
 
-		$contentTemplate = new h2o(TEMPLATES_DIR . 'auth/login.html');
-	
-		$page = new h2o(TEMPLATES_DIR . 'index.html');
-	
-		echo $page->render(array(
-			'content' => $contentTemplate->render(array('auth' => $auth, 'user' => $_SESSION['user'])),
-			'user' => $_SESSION['user']
-			)
-		);	
+		$templates[] = array('name' => 'auth.login',
+							'vars' => array('auth' => $auth,
+											'user' => $_SESSION['user'])
+							);
+		renderPage($templates);
+
+	// password reset
+	} else if ("reset" == $action) {
+		if ("POST" == $_SERVER['REQUEST_METHOD']) {
+			if (!@empty($_POST['username'])) {
+				$_user->resetPassword(@$_POST['username']);
+				if (NULL != $_user->error) {
+					$status = $_user->error;
+				} else {
+					$status = "Your request was successful.";
+				}
+			} else {
+				$status = "You must enter a username.";
+			}
+		}
 	}
 ?>

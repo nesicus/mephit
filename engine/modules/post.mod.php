@@ -1,8 +1,37 @@
 <?php
-	/* post.mod.php
-	 * date: 2011-03-02
-	 * description: module for handling posts and comments
-	*/
+/*
+ *      post.mod.php 2011-10-27
+ *      
+ *      Copyright 2011 Daryl Fain <daryl@99years.com>
+ *      
+ *      Redistribution and use in source and binary forms, with or without
+ *      modification, are permitted provided that the following conditions are
+ *      met:
+ *      
+ *      * Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ *      * Redistributions in binary form must reproduce the above
+ *        copyright notice, this list of conditions and the following disclaimer
+ *        in the documentation and/or other materials provided with the
+ *        distribution.
+ *      * Neither the name of the  nor the names of its
+ *        contributors may be used to endorse or promote products derived from
+ *        this software without specific prior written permission.
+ *      
+ *      THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *      "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *      LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *      A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *      OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *      SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *      LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *      DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *      THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *      (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *      
+ *      
+ */
 	
 	if (!defined('IN_RECOVERY')) die();
 
@@ -29,21 +58,19 @@
 
 			if (NULL != $content->error) $status = $content->error;
 		}
-
-		$contentTemplate = new h2o(TEMPLATES_DIR . 'post/common.html');
-		$render = $contentTemplate->render(array('content' => $posts['post'], 'error' => $status));
 		
-		$auth = $_user->getPrivileges($_SESSION['user']['id'], CAN_MAKE_COMMENTS);
-		
-		$comments = new h2o(TEMPLATES_DIR . 'post/comments.html');
-		$render.= $comments->render(array('comments' => $posts['comments'], 'auth' => $auth, 'thread' => $thread));
-		
-		$page = new h2o(TEMPLATES_DIR . 'index.html');
-		echo $page->render(array(
-				'content' => $render,
-				'user' => $_SESSION['user'],
-			)
-		);
+		$templates[] = array('name' => 'post.common',
+								'vars' => array('content' => $posts['post'],
+											'error' => $status)
+							);
+									
+		$templates[] = array('name' => 'post.comments',
+								'vars' => array('comments' => $posts['comments'],
+											'auth' => $auth,
+											'thread' => $thread)
+							);
+						
+		renderPage($templates);
 					
 	// create a new post
 	} else if ("new" == $action) {
@@ -71,14 +98,14 @@
 				$status = 'You are not allowed to make this kind of contribution.';
 		}
 		
-		$contentTemplate = new h2o(TEMPLATES_DIR . 'post/form.html');
+		
+		$templates[] = array('name' => 'post.form',
+									'vars' => array('types' => $contentTypes,
+													'auth' => $auth,
+													'error' => $status)
+							);
 
-		$page = new h2o(TEMPLATES_DIR . 'index.html');
-		echo $page->render(array(
-				'content' => $contentTemplate->render(array('types' => $contentTypes, 'auth' => $auth, 'error' => $status)),
-				'user' => $_SESSION['user']
-			)
-		);
+		renderPage($templates);
 	} else if ("comment" == $action) {
 		// check to see if user is allowed to make posts
 		if ($_user->getPrivileges($_SESSION['user']['id'], CAN_MAKE_COMMENTS)) {
