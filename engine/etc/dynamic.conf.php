@@ -1,8 +1,8 @@
 <?php
 /*
- *      dynamic.conf.php 2011-10-27
+ *      dynamic.conf.php 2011-10-28
  *      
- *      Copyright 2011 daryl <daryl@99years.com>
+ *      Copyright 2011 Daryl Fain <daryl@99years.com>
  *      
  *      Redistribution and use in source and binary forms, with or without
  *      modification, are permitted provided that the following conditions are
